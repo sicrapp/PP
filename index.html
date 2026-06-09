@@ -1,235 +1,391 @@
+<!-- วาง Index.html ทั้งหมดที่นี่ -->
 <!DOCTYPE html>
 <html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>แบบประเมินความพึงพอใจในการให้บริการของสาขาเวชศาสตร์ฟื้นฟูหัวใจและปอด</title>
 
-<title>แบบประเมินความพึงพอใจ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#fff7ed',
+                100: '#ffedd5',
+                200: '#fed7aa',
+                300: '#fdba74',
+                400: '#fb923c',
+                500: '#f97316',
+                600: '#ea580c',
+                700: '#c2410c',
+                800: '#9a3412',
+                900: '#7c2d12'
+              }
+            },
+            boxShadow: {
+              soft: '0 10px 30px rgba(249, 115, 22, 0.15)'
+            }
+          }
+        }
+      };
+    </script>
 
-<script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background:
+          radial-gradient(circle at top left, rgba(251, 146, 60, 0.18), transparent 30%),
+          radial-gradient(circle at top right, rgba(253, 186, 116, 0.22), transparent 28%),
+          linear-gradient(180deg, #fff7ed 0%, #ffffff 60%, #fff7ed 100%);
+      }
 
-<style>
-body{
-    background:#fff7ed;
-}
-.radio-card{
-    transition:.2s;
-}
-.radio-card:hover{
-    transform:translateY(-2px);
-}
-</style>
+      .card-pop {
+        backdrop-filter: blur(8px);
+      }
 
-</head>
+      .radio-card input:checked + span {
+        border-color: #f97316;
+        background: linear-gradient(135deg, #fff7ed, #ffedd5);
+        box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15);
+      }
 
-<body class="min-h-screen p-4">
+      .radio-card input:checked + span .dot {
+        background: #f97316;
+        border-color: #f97316;
+      }
 
-<div class="max-w-3xl mx-auto">
+      .radio-card span {
+        transition: all 0.2s ease;
+      }
 
-<div class="bg-white rounded-3xl shadow-xl p-8">
+      .pulse-soft {
+        animation: pulseSoft 1.8s ease-in-out infinite;
+      }
 
-<h1 class="text-3xl font-bold text-orange-600 text-center mb-2">
-🧡 แบบประเมินความพึงพอใจ
-</h1>
+      @keyframes pulseSoft {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.02); opacity: 0.92; }
+      }
+    </style>
+  </head>
 
-<p class="text-center text-gray-500 mb-8">
-สาขาเวชศาสตร์ฟื้นฟูหัวใจและปอด
-</p>
+  <body class="min-h-screen text-slate-800">
+    <main class="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
+      <section class="mb-6 overflow-hidden rounded-3xl bg-white/80 p-5 shadow-soft ring-1 ring-orange-100 card-pop sm:p-8">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div class="mb-2 inline-flex items-center rounded-full bg-brand-100 px-3 py-1 text-sm font-semibold text-brand-700">
+              แบบประเมินความพึงพอใจ
+            </div>
+            <h1 class="text-2xl font-extrabold leading-tight text-slate-900 sm:text-3xl">
+              แบบประเมินความพึงพอใจในการให้บริการของสาขาเวชศาสตร์ฟื้นฟูหัวใจและปอด
+            </h1>
+            <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+              กรุณาเลือกคะแนนในแต่ละหัวข้อ และสามารถพิมพ์ข้อเสนอแนะเพิ่มเติมได้ด้านล่าง
+            </p>
+          </div>
 
-<form id="surveyForm" class="space-y-8">
+          <div class="rounded-2xl bg-gradient-to-br from-orange-400 to-orange-500 px-5 py-4 text-white shadow-soft">
+            <div class="text-sm font-medium opacity-90">สถานะฟอร์ม</div>
+            <div class="mt-1 text-lg font-bold">พร้อมบันทึกข้อมูล</div>
+          </div>
+        </div>
+      </section>
 
-<div id="questions"></div>
+      <section class="rounded-3xl bg-white p-5 shadow-soft ring-1 ring-orange-100 sm:p-8">
+        <form id="satisfactionForm" class="space-y-6" novalidate>
+          <!-- Q1 -->
+          <div class="rounded-2xl bg-orange-50 p-4 ring-1 ring-orange-100">
+            <label class="mb-3 block text-base font-bold text-slate-900">
+              1. การสื่อสารและการประสานงาน <span class="text-rose-500">*</span>
+            </label>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="communication" value="ดีเยี่ยม" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ดีเยี่ยม
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="communication" value="ดี" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ดี
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="communication" value="พอใช้" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  พอใช้
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="communication" value="ควรปรับปรุง" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ควรปรับปรุง
+                </span>
+              </label>
+            </div>
+          </div>
 
-<div>
-<label class="font-semibold block mb-2">
-ข้อเสนอแนะ
-</label>
+          <!-- Q2 -->
+          <div class="rounded-2xl bg-orange-50 p-4 ring-1 ring-orange-100">
+            <label class="mb-3 block text-base font-bold text-slate-900">
+              2. เจ้าหน้าที่เอาใจใส่ เต็มใจให้บริการ <span class="text-rose-500">*</span>
+            </label>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="care" value="ดีเยี่ยม" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ดีเยี่ยม
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="care" value="ดี" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ดี
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="care" value="พอใช้" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  พอใช้
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="care" value="ควรปรับปรุง" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ควรปรับปรุง
+                </span>
+              </label>
+            </div>
+          </div>
 
-<textarea
-name="suggestion"
-class="w-full border rounded-xl p-3"
-rows="3"></textarea>
-</div>
+          <!-- Q3 -->
+          <div class="rounded-2xl bg-orange-50 p-4 ring-1 ring-orange-100">
+            <label class="mb-3 block text-base font-bold text-slate-900">
+              3. เจ้าหน้าที่พูดจาสุภาพ ยิ้มแย้มแจ่มใส <span class="text-rose-500">*</span>
+            </label>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="polite" value="ดีเยี่ยม" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ดีเยี่ยม
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="polite" value="ดี" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ดี
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="polite" value="พอใช้" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  พอใช้
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="polite" value="ควรปรับปรุง" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ควรปรับปรุง
+                </span>
+              </label>
+            </div>
+          </div>
 
-<div>
-<label class="font-semibold block mb-2">
-ข้อควรปรับปรุง
-</label>
+          <!-- Q4 -->
+          <div class="rounded-2xl bg-orange-50 p-4 ring-1 ring-orange-100">
+            <label class="mb-3 block text-base font-bold text-slate-900">
+              4. ความพึงพอใจโดยรวม <span class="text-rose-500">*</span>
+            </label>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="overall" value="ดีเยี่ยม" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ดีเยี่ยม
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="overall" value="ดี" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ดี
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="overall" value="พอใช้" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  พอใช้
+                </span>
+              </label>
+              <label class="radio-card cursor-pointer">
+                <input type="radio" name="overall" value="ควรปรับปรุง" class="sr-only" required />
+                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
+                  ควรปรับปรุง
+                </span>
+              </label>
+            </div>
+          </div>
 
-<textarea
-name="improvement"
-class="w-full border rounded-xl p-3"
-rows="3"></textarea>
-</div>
+          <!-- Text Areas -->
+          <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <div class="rounded-2xl bg-white p-4 ring-1 ring-orange-100">
+              <label for="suggestion" class="mb-2 block text-sm font-bold text-slate-900">
+                5. ข้อเสนอแนะ
+              </label>
+              <textarea
+                id="suggestion"
+                name="suggestion"
+                rows="5"
+                maxlength="1000"
+                placeholder="พิมพ์ข้อเสนอแนะเพิ่มเติม..."
+                class="w-full rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
+              ></textarea>
+              <p class="mt-2 text-xs text-slate-500">ไม่บังคับกรอก</p>
+            </div>
 
-<button
-id="submitBtn"
-type="submit"
-class="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-xl font-bold">
+            <div class="rounded-2xl bg-white p-4 ring-1 ring-orange-100">
+              <label for="improvement" class="mb-2 block text-sm font-bold text-slate-900">
+                6. ข้อควรปรับปรุง
+              </label>
+              <textarea
+                id="improvement"
+                name="improvement"
+                rows="5"
+                maxlength="1000"
+                placeholder="พิมพ์ข้อควรปรับปรุง..."
+                class="w-full rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
+              ></textarea>
+              <p class="mt-2 text-xs text-slate-500">ไม่บังคับกรอก</p>
+            </div>
+          </div>
 
-บันทึกข้อมูล
+          <!-- Status -->
+          <div id="statusBox" class="hidden rounded-2xl p-4 text-sm font-medium"></div>
 
-</button>
+          <!-- Actions -->
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
+            <button
+              type="reset"
+              class="rounded-2xl border border-orange-200 bg-white px-5 py-3 font-semibold text-orange-700 transition hover:bg-orange-50"
+            >
+              ล้างฟอร์ม
+            </button>
 
-</form>
+            <button
+              id="submitBtn"
+              type="submit"
+              class="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3 font-bold text-white shadow-soft transition hover:from-orange-600 hover:to-orange-700 disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              <svg id="spinner" class="hidden h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+              </svg>
+              <span id="submitText">บันทึกข้อมูล</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
 
-<div
-id="successMessage"
-class="hidden mt-6 bg-green-100 text-green-700 p-4 rounded-xl">
-บันทึกข้อมูลสำเร็จ
-</div>
+    <script>
+      const form = document.getElementById('satisfactionForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const submitText = document.getElementById('submitText');
+      const spinner = document.getElementById('spinner');
+      const statusBox = document.getElementById('statusBox');
 
-<div
-id="errorMessage"
-class="hidden mt-6 bg-red-100 text-red-700 p-4 rounded-xl">
-เกิดข้อผิดพลาด
-</div>
+      function setLoading(isLoading) {
+        submitBtn.disabled = isLoading;
+        spinner.classList.toggle('hidden', !isLoading);
+        submitText.textContent = isLoading ? 'กำลังบันทึก...' : 'บันทึกข้อมูล';
+      }
 
-</div>
+      function showStatus(message, type = 'success') {
+        statusBox.classList.remove('hidden', 'bg-green-50', 'text-green-800', 'ring-green-200', 'bg-red-50', 'text-red-800', 'ring-red-200');
+        statusBox.classList.add(type === 'success' ? 'bg-green-50' : 'bg-red-50');
+        statusBox.classList.add(type === 'success' ? 'text-green-800' : 'text-red-800');
+        statusBox.classList.add(type === 'success' ? 'ring-green-200' : 'ring-red-200');
+        statusBox.classList.add('ring-1');
+        statusBox.textContent = message;
+      }
 
-</div>
+      function clearStatus() {
+        statusBox.classList.add('hidden');
+        statusBox.textContent = '';
+      }
 
-<script>
+      function getFormData() {
+        const formData = new FormData(form);
+        return {
+          communication: formData.get('communication') || '',
+          care: formData.get('care') || '',
+          polite: formData.get('polite') || '',
+          overall: formData.get('overall') || '',
+          suggestion: document.getElementById('suggestion').value || '',
+          improvement: document.getElementById('improvement').value || ''
+        };
+      }
 
-const API_URL =
-'https://script.google.com/macros/s/XXXXXXXXXXXX/exec';
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        clearStatus();
 
-const options = [
-'ดีเยี่ยม',
-'ดี',
-'พอใช้',
-'ควรปรับปรุง'
-];
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          showStatus('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน', 'error');
+          return;
+        }
 
-const questions = [
-{
-name:'communication',
-label:'การสื่อสารและการประสานงาน'
-},
-{
-name:'service',
-label:'เจ้าหน้าที่เอาใจใส่ เต็มใจให้บริการ'
-},
-{
-name:'polite',
-label:'เจ้าหน้าที่พูดจาสุภาพ ยิ้มแย้มแจ่มใส'
-},
-{
-name:'overall',
-label:'ความพึงพอใจโดยรวม'
-}
-];
+        const payload = getFormData();
+        setLoading(true);
 
-const container =
-document.getElementById('questions');
+        google.script.run
+          .withSuccessHandler((res) => {
+            setLoading(false);
 
-questions.forEach((q,index)=>{
+            if (res && res.success) {
+              form.reset();
+              showStatus(res.message || 'บันทึกข้อมูลเรียบร้อยแล้ว', 'success');
+            } else {
+              showStatus((res && res.message) ? res.message : 'ไม่สามารถบันทึกข้อมูลได้', 'error');
+            }
+          })
+          .withFailureHandler((err) => {
+            setLoading(false);
+            showStatus(
+              (err && err.message) ? err.message : 'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์',
+              'error'
+            );
+          })
+          .saveForm(payload);
+      });
 
-let html=`
-<div>
-<label class="font-semibold block mb-3">
-${index+1}. ${q.label}
-</label>
-
-<div class="grid md:grid-cols-4 gap-3">
-`;
-
-options.forEach(op=>{
-
-html+=`
-<label class="radio-card border rounded-xl p-3 cursor-pointer text-center">
-<input
-required
-type="radio"
-name="${q.name}"
-value="${op}"
-class="mr-2">
-${op}
-</label>
-`;
-
-});
-
-html+='</div></div>';
-
-container.innerHTML += html;
-
-});
-
-const form =
-document.getElementById('surveyForm');
-
-form.addEventListener('submit',async(e)=>{
-
-e.preventDefault();
-
-const btn =
-document.getElementById('submitBtn');
-
-btn.disabled=true;
-btn.innerHTML='กำลังบันทึก...';
-
-document
-.getElementById('successMessage')
-.classList.add('hidden');
-
-document
-.getElementById('errorMessage')
-.classList.add('hidden');
-
-try{
-
-const formData = new FormData(form);
-
-const payload = {
-communication: formData.get('communication'),
-service: formData.get('service'),
-polite: formData.get('polite'),
-overall: formData.get('overall'),
-suggestion: formData.get('suggestion'),
-improvement: formData.get('improvement')
-};
-
-const response = await fetch(API_URL,{
-method:'POST',
-headers:{
-'Content-Type':'application/json'
-},
-body:JSON.stringify(payload)
-});
-
-const result = await response.json();
-
-if(result.success){
-
-form.reset();
-
-document
-.getElementById('successMessage')
-.classList.remove('hidden');
-
-}else{
-
-throw new Error(result.message);
-
-}
-
-}catch(error){
-
-document
-.getElementById('errorMessage')
-.classList.remove('hidden');
-
-console.error(error);
-
-}
-
-btn.disabled=false;
-btn.innerHTML='บันทึกข้อมูล';
-
-});
-
-</script>
-
-</body>
+      form.addEventListener('reset', () => {
+        clearStatus();
+        setTimeout(() => {
+          const firstRadio = form.querySelector('input[type="radio"]');
+          if (firstRadio) firstRadio.blur();
+        }, 0);
+      });
+    </script>
+  </body>
 </html>
