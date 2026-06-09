@@ -1,391 +1,218 @@
-<!-- วาง Index.html ทั้งหมดที่นี่ -->
 <!DOCTYPE html>
 <html lang="th">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>แบบประเมินความพึงพอใจในการให้บริการของสาขาเวชศาสตร์ฟื้นฟูหัวใจและปอด</title>
+<head>
+  <meta charset="UTF-8">
+  <title>แบบประเมินความพึงพอใจ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-orange-50 to-amber-100 min-h-screen py-8 px-4 text-slate-700">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                50: '#fff7ed',
-                100: '#ffedd5',
-                200: '#fed7aa',
-                300: '#fdba74',
-                400: '#fb923c',
-                500: '#f97316',
-                600: '#ea580c',
-                700: '#c2410c',
-                800: '#9a3412',
-                900: '#7c2d12'
-              }
-            },
-            boxShadow: {
-              soft: '0 10px 30px rgba(249, 115, 22, 0.15)'
-            }
-          }
-        }
-      };
-    </script>
+  <div class="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl border-4 border-orange-200 overflow-hidden transform transition duration-300 hover:scale-[1.01]">
+    
+    <div class="bg-gradient-to-r from-orange-400 to-amber-500 p-6 text-center text-white relative">
+      <div class="absolute top-2 right-4 text-4xl opacity-20">🫁❤️</div>
+      <h1 class="text-2xl font-semibold tracking-wide">แบบประเมินความพึงพอใจ</h1>
+      <p class="text-orange-50 text-sm mt-1">สาขาเวชศาสตร์ฟื้นฟูหัวใจและปอด</p>
+    </div>
 
-    <style>
-      body {
-        background:
-          radial-gradient(circle at top left, rgba(251, 146, 60, 0.18), transparent 30%),
-          radial-gradient(circle at top right, rgba(253, 186, 116, 0.22), transparent 28%),
-          linear-gradient(180deg, #fff7ed 0%, #ffffff 60%, #fff7ed 100%);
-      }
+    <form id="surveyForm" onsubmit="handleFormSubmit(event)" class="p-6 space-y-6">
+      
+      <div class="bg-orange-50 rounded-2xl p-4 border border-orange-100 text-xs text-orange-800 leading-relaxed">
+        <strong>💡 คำชี้แจง:</strong> โปรดเลือกทำเครื่องหมายลงในช่องระดับความพึงพอใจที่ตรงกับความคิดเห็นของท่านมากที่สุด เพื่อนำข้อมูลไปปรับปรุงการให้บริการต่อไป
+      </div>
 
-      .card-pop {
-        backdrop-filter: blur(8px);
-      }
-
-      .radio-card input:checked + span {
-        border-color: #f97316;
-        background: linear-gradient(135deg, #fff7ed, #ffedd5);
-        box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15);
-      }
-
-      .radio-card input:checked + span .dot {
-        background: #f97316;
-        border-color: #f97316;
-      }
-
-      .radio-card span {
-        transition: all 0.2s ease;
-      }
-
-      .pulse-soft {
-        animation: pulseSoft 1.8s ease-in-out infinite;
-      }
-
-      @keyframes pulseSoft {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.02); opacity: 0.92; }
-      }
-    </style>
-  </head>
-
-  <body class="min-h-screen text-slate-800">
-    <main class="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
-      <section class="mb-6 overflow-hidden rounded-3xl bg-white/80 p-5 shadow-soft ring-1 ring-orange-100 card-pop sm:p-8">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <div class="mb-2 inline-flex items-center rounded-full bg-brand-100 px-3 py-1 text-sm font-semibold text-brand-700">
-              แบบประเมินความพึงพอใจ
-            </div>
-            <h1 class="text-2xl font-extrabold leading-tight text-slate-900 sm:text-3xl">
-              แบบประเมินความพึงพอใจในการให้บริการของสาขาเวชศาสตร์ฟื้นฟูหัวใจและปอด
-            </h1>
-            <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
-              กรุณาเลือกคะแนนในแต่ละหัวข้อ และสามารถพิมพ์ข้อเสนอแนะเพิ่มเติมได้ด้านล่าง
-            </p>
-          </div>
-
-          <div class="rounded-2xl bg-gradient-to-br from-orange-400 to-orange-500 px-5 py-4 text-white shadow-soft">
-            <div class="text-sm font-medium opacity-90">สถานะฟอร์ม</div>
-            <div class="mt-1 text-lg font-bold">พร้อมบันทึกข้อมูล</div>
-          </div>
+      <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-3">
+        <label class="block font-medium text-slate-800">1. การสื่อสารและการประสานงาน <span class="text-red-500">*</span></label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="communication" value="ดีเยี่ยม" class="accent-orange-500 mr-2" required> 😄 ดีเยี่ยม
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="communication" value="ดี" class="accent-orange-500 mr-2"> 🙂 ดี
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="communication" value="พอใช้" class="accent-orange-500 mr-2"> 😐 พอใช้
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="communication" value="ควรปรับปรุง" class="accent-orange-500 mr-2"> 🙁 ปรับปรุง
+          </label>
         </div>
-      </section>
+      </div>
 
-      <section class="rounded-3xl bg-white p-5 shadow-soft ring-1 ring-orange-100 sm:p-8">
-        <form id="satisfactionForm" class="space-y-6" novalidate>
-          <!-- Q1 -->
-          <div class="rounded-2xl bg-orange-50 p-4 ring-1 ring-orange-100">
-            <label class="mb-3 block text-base font-bold text-slate-900">
-              1. การสื่อสารและการประสานงาน <span class="text-rose-500">*</span>
-            </label>
-            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="communication" value="ดีเยี่ยม" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ดีเยี่ยม
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="communication" value="ดี" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ดี
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="communication" value="พอใช้" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  พอใช้
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="communication" value="ควรปรับปรุง" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ควรปรับปรุง
-                </span>
-              </label>
-            </div>
-          </div>
+      <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-3">
+        <label class="block font-medium text-slate-800">2. เจ้าหน้าที่เอาใจใส่ เต็มใจให้บริการ <span class="text-red-500">*</span></label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="attentiveness" value="ดีเยี่ยม" class="accent-orange-500 mr-2" required> 😄 ดีเยี่ยม
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="attentiveness" value="ดี" class="accent-orange-500 mr-2"> 🙂 ดี
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="attentiveness" value="พอใช้" class="accent-orange-500 mr-2"> 😐 พอใช้
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="attentiveness" value="ควรปรับปรุง" class="accent-orange-500 mr-2"> 🙁 ปรับปรุง
+          </label>
+        </div>
+      </div>
 
-          <!-- Q2 -->
-          <div class="rounded-2xl bg-orange-50 p-4 ring-1 ring-orange-100">
-            <label class="mb-3 block text-base font-bold text-slate-900">
-              2. เจ้าหน้าที่เอาใจใส่ เต็มใจให้บริการ <span class="text-rose-500">*</span>
-            </label>
-            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="care" value="ดีเยี่ยม" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ดีเยี่ยม
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="care" value="ดี" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ดี
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="care" value="พอใช้" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  พอใช้
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="care" value="ควรปรับปรุง" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ควรปรับปรุง
-                </span>
-              </label>
-            </div>
-          </div>
+      <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-3">
+        <label class="block font-medium text-slate-800">3. เจ้าหน้าที่พูดจาสุภาพ ยิ้มแย้มแจ่มใส <span class="text-red-500">*</span></label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="politeness" value="ดีเยี่ยม" class="accent-orange-500 mr-2" required> 😄 ดีเยี่ยม
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="politeness" value="ดี" class="accent-orange-500 mr-2"> 🙂 ดี
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="politeness" value="พอใช้" class="accent-orange-500 mr-2"> 😐 พอใช้
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border border-slate-200 cursor-pointer transition hover:bg-orange-50 hover:border-orange-300">
+            <input type="radio" name="politeness" value="ควรปรับปรุง" class="accent-orange-500 mr-2"> 🙁 ปรับปรุง
+          </label>
+        </div>
+      </div>
 
-          <!-- Q3 -->
-          <div class="rounded-2xl bg-orange-50 p-4 ring-1 ring-orange-100">
-            <label class="mb-3 block text-base font-bold text-slate-900">
-              3. เจ้าหน้าที่พูดจาสุภาพ ยิ้มแย้มแจ่มใส <span class="text-rose-500">*</span>
-            </label>
-            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="polite" value="ดีเยี่ยม" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ดีเยี่ยม
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="polite" value="ดี" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ดี
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="polite" value="พอใช้" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  พอใช้
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="polite" value="ควรปรับปรุง" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ควรปรับปรุง
-                </span>
-              </label>
-            </div>
-          </div>
+      <div class="bg-orange-50 p-4 rounded-2xl border-2 border-orange-200 space-y-3">
+        <label class="block font-semibold text-orange-900 text-lg">4. ความพึงพอใจโดยรวม <span class="text-red-500">*</span></label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border-2 border-orange-100 cursor-pointer transition hover:bg-orange-100 hover:border-orange-400">
+            <input type="radio" name="overall" value="ดีเยี่ยม" class="accent-orange-600 mr-2" required> 🥰 ดีเยี่ยม
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border-2 border-orange-100 cursor-pointer transition hover:bg-orange-100 hover:border-orange-400">
+            <input type="radio" name="overall" value="ดี" class="accent-orange-600 mr-2"> 😊 ดี
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border-2 border-orange-100 cursor-pointer transition hover:bg-orange-100 hover:border-orange-400">
+            <input type="radio" name="overall" value="พอใช้" class="accent-orange-600 mr-2"> 😐 พอใช้
+          </label>
+          <label class="flex items-center justify-center p-3 bg-white rounded-xl border-2 border-orange-100 cursor-pointer transition hover:bg-orange-100 hover:border-orange-400">
+            <input type="radio" name="overall" value="ควรปรับปรุง" class="accent-orange-600 mr-2"> 😞 ปรับปรุง
+          </label>
+        </div>
+      </div>
 
-          <!-- Q4 -->
-          <div class="rounded-2xl bg-orange-50 p-4 ring-1 ring-orange-100">
-            <label class="mb-3 block text-base font-bold text-slate-900">
-              4. ความพึงพอใจโดยรวม <span class="text-rose-500">*</span>
-            </label>
-            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="overall" value="ดีเยี่ยม" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ดีเยี่ยม
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="overall" value="ดี" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ดี
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="overall" value="พอใช้" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  พอใช้
-                </span>
-              </label>
-              <label class="radio-card cursor-pointer">
-                <input type="radio" name="overall" value="ควรปรับปรุง" class="sr-only" required />
-                <span class="flex items-center gap-3 rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
-                  <span class="dot h-4 w-4 rounded-full border-2 border-slate-300"></span>
-                  ควรปรับปรุง
-                </span>
-              </label>
-            </div>
-          </div>
+      <div class="space-y-2">
+        <label class="block font-medium text-slate-700">ข้อเสนอแนะเพิ่มเติม</label>
+        <textarea name="suggestion" rows="3" class="w-full p-3 rounded-2xl border-2 border-slate-200 focus:border-orange-400 focus:outline-none transition resize-none" placeholder="พิมพ์ข้อเสนอแนะของคุณที่นี่..."></textarea>
+      </div>
 
-          <!-- Text Areas -->
-          <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <div class="rounded-2xl bg-white p-4 ring-1 ring-orange-100">
-              <label for="suggestion" class="mb-2 block text-sm font-bold text-slate-900">
-                5. ข้อเสนอแนะ
-              </label>
-              <textarea
-                id="suggestion"
-                name="suggestion"
-                rows="5"
-                maxlength="1000"
-                placeholder="พิมพ์ข้อเสนอแนะเพิ่มเติม..."
-                class="w-full rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
-              ></textarea>
-              <p class="mt-2 text-xs text-slate-500">ไม่บังคับกรอก</p>
-            </div>
+      <div class="space-y-2">
+        <label class="block font-medium text-slate-700">ข้อควรปรับปรุง</label>
+        <textarea name="improvement" rows="3" class="w-full p-3 rounded-2xl border-2 border-slate-200 focus:border-orange-400 focus:outline-none transition resize-none" placeholder="พิมพ์ข้อที่ต้องการให้เราปรับปรุง..."></textarea>
+      </div>
 
-            <div class="rounded-2xl bg-white p-4 ring-1 ring-orange-100">
-              <label for="improvement" class="mb-2 block text-sm font-bold text-slate-900">
-                6. ข้อควรปรับปรุง
-              </label>
-              <textarea
-                id="improvement"
-                name="improvement"
-                rows="5"
-                maxlength="1000"
-                placeholder="พิมพ์ข้อควรปรับปรุง..."
-                class="w-full rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm outline-none transition focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
-              ></textarea>
-              <p class="mt-2 text-xs text-slate-500">ไม่บังคับกรอก</p>
-            </div>
-          </div>
+      <div class="pt-2">
+        <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-medium py-4 px-6 rounded-2xl shadow-lg hover:shadow-orange-200 hover:from-orange-600 hover:to-amber-600 transition-all duration-150 transform active:scale-95 flex items-center justify-center">
+          <span id="btnText">ส่งแบบประเมิน ✨</span>
+          <span id="spinner" class="hidden animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent ml-2"></span>
+        </button>
+      </div>
 
-          <!-- Status -->
-          <div id="statusBox" class="hidden rounded-2xl p-4 text-sm font-medium"></div>
+    </form>
 
-          <!-- Actions -->
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
-            <button
-              type="reset"
-              class="rounded-2xl border border-orange-200 bg-white px-5 py-3 font-semibold text-orange-700 transition hover:bg-orange-50"
-            >
-              ล้างฟอร์ม
-            </button>
+    <div id="statusPopup" class="hidden p-6 text-center space-y-4">
+      <div id="statusIcon" class="text-6xl"></div>
+      <h2 id="statusTitle" class="text-2xl font-semibold"></h2>
+      <p id="statusMessage" class="text-slate-500 max-w-sm mx-auto"></p>
+      <button onclick="resetSurveyForm()" class="mt-4 bg-slate-100 text-slate-700 py-2 px-6 rounded-xl hover:bg-slate-200 transition">
+        ทำแบบประเมินอีกครั้ง
+      </button>
+    </div>
 
-            <button
-              id="submitBtn"
-              type="submit"
-              class="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3 font-bold text-white shadow-soft transition hover:from-orange-600 hover:to-orange-700 disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              <svg id="spinner" class="hidden h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-              </svg>
-              <span id="submitText">บันทึกข้อมูล</span>
-            </button>
-          </div>
-        </form>
-      </section>
-    </main>
+  </div>
 
-    <script>
-      const form = document.getElementById('satisfactionForm');
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const form = document.getElementById('surveyForm');
       const submitBtn = document.getElementById('submitBtn');
-      const submitText = document.getElementById('submitText');
+      const btnText = document.getElementById('btnText');
       const spinner = document.getElementById('spinner');
-      const statusBox = document.getElementById('statusBox');
-
-      function setLoading(isLoading) {
-        submitBtn.disabled = isLoading;
-        spinner.classList.toggle('hidden', !isLoading);
-        submitText.textContent = isLoading ? 'กำลังบันทึก...' : 'บันทึกข้อมูล';
+      
+      // แสดงสถานะกำลังโหลด
+      submitBtn.disabled = true;
+      btnText.innerText = 'กำลังส่งข้อมูล...';
+      spinner.classList.remove('hidden');
+      
+      // แปลงข้อมูลฟอร์มเป็น Object
+      const formData = {
+        communication: form.communication.value,
+        attentiveness: form.attentiveness.value,
+        politeness: form.politeness.value,
+        overall: form.overall.value,
+        suggestion: form.suggestion.value,
+        improvement: form.improvement.value
+      };
+      
+      // ส่งข้อมูลไปยังฝั่ง Server (Google Apps Script)
+      google.script.run
+        .withSuccessHandler(onSuccess)
+        .withFailureHandler(onFailure)
+        .submitForm(formData);
+    }
+    
+    function onSuccess(response) {
+      const form = document.getElementById('surveyForm');
+      const statusPopup = document.getElementById('statusPopup');
+      
+      form.classList.add('hidden');
+      statusPopup.classList.remove('hidden');
+      
+      if(response.success) {
+        document.getElementById('statusIcon').innerText = '🎉';
+        document.getElementById('statusTitle').innerText = 'บันทึกสำเร็จ!';
+        document.getElementById('statusTitle').className = 'text-2xl font-semibold text-emerald-600';
+        document.getElementById('statusMessage').innerText = response.message;
+        form.reset(); // ล้างฟอร์มหลังจากส่งสำเร็จ
+      } else {
+        showError(response.message);
       }
-
-      function showStatus(message, type = 'success') {
-        statusBox.classList.remove('hidden', 'bg-green-50', 'text-green-800', 'ring-green-200', 'bg-red-50', 'text-red-800', 'ring-red-200');
-        statusBox.classList.add(type === 'success' ? 'bg-green-50' : 'bg-red-50');
-        statusBox.classList.add(type === 'success' ? 'text-green-800' : 'text-red-800');
-        statusBox.classList.add(type === 'success' ? 'ring-green-200' : 'ring-red-200');
-        statusBox.classList.add('ring-1');
-        statusBox.textContent = message;
-      }
-
-      function clearStatus() {
-        statusBox.classList.add('hidden');
-        statusBox.textContent = '';
-      }
-
-      function getFormData() {
-        const formData = new FormData(form);
-        return {
-          communication: formData.get('communication') || '',
-          care: formData.get('care') || '',
-          polite: formData.get('polite') || '',
-          overall: formData.get('overall') || '',
-          suggestion: document.getElementById('suggestion').value || '',
-          improvement: document.getElementById('improvement').value || ''
-        };
-      }
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        clearStatus();
-
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          showStatus('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน', 'error');
-          return;
-        }
-
-        const payload = getFormData();
-        setLoading(true);
-
-        google.script.run
-          .withSuccessHandler((res) => {
-            setLoading(false);
-
-            if (res && res.success) {
-              form.reset();
-              showStatus(res.message || 'บันทึกข้อมูลเรียบร้อยแล้ว', 'success');
-            } else {
-              showStatus((res && res.message) ? res.message : 'ไม่สามารถบันทึกข้อมูลได้', 'error');
-            }
-          })
-          .withFailureHandler((err) => {
-            setLoading(false);
-            showStatus(
-              (err && err.message) ? err.message : 'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์',
-              'error'
-            );
-          })
-          .saveForm(payload);
-      });
-
-      form.addEventListener('reset', () => {
-        clearStatus();
-        setTimeout(() => {
-          const firstRadio = form.querySelector('input[type="radio"]');
-          if (firstRadio) firstRadio.blur();
-        }, 0);
-      });
-    </script>
-  </body>
+    }
+    
+    function onFailure(error) {
+      showError(error.toString());
+    }
+    
+    function showError(msg) {
+      const form = document.getElementById('surveyForm');
+      const statusPopup = document.getElementById('statusPopup');
+      
+      form.classList.add('hidden');
+      statusPopup.classList.remove('hidden');
+      
+      document.getElementById('statusIcon').innerText = '❌';
+      document.getElementById('statusTitle').innerText = 'เกิดข้อผิดพลาด';
+      document.getElementById('statusTitle').className = 'text-2xl font-semibold text-red-600';
+      document.getElementById('statusMessage').innerText = msg;
+    }
+    
+    function resetSurveyForm() {
+      const form = document.getElementById('surveyForm');
+      const statusPopup = document.getElementById('statusPopup');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const spinner = document.getElementById('spinner');
+      
+      statusPopup.classList.add('hidden');
+      form.classList.remove('hidden');
+      
+      // รีเซ็ตปุ่มส่งข้อมูลกลับมาปกติ
+      submitBtn.disabled = false;
+      btnText.innerText = 'ส่งแบบประเมิน ✨';
+      spinner.classList.add('hidden');
+    }
+  </script>
+</body>
 </html>
