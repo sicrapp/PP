@@ -195,8 +195,7 @@
             btnText.textContent = 'กำลังบันทึกข้อมูล...';
             btnSpinner.classList.remove('hidden');
 
-            // --- แก้ไขตรงนี้ ---
-            // นำ Web App URL ที่ได้จากขั้นตอนที่ 1 มาใส่แทนที่คำว่า YOUR_WEB_APP_URL_HERE
+            // --- ใส่ Web App URL ของคุณเรียบร้อยแล้ว ---
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzR_Cz-i0pI48yu4Tglq0MavDEXQFO3lM-uhw49SoTcxZM42TGVSc3f3QkgIoKdjrFdHQ/exec'; 
 
             fetch(scriptURL, {
@@ -213,7 +212,6 @@
                 console.error('Error!', error.message);
                 handleResult(false, 'เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง', form, submitBtn, btnText, btnSpinner);
             });
-            // --- สิ้นสุดการแก้ไข ---
         }
 
         function handleResult(isSuccess, message, form, submitBtn, btnText, btnSpinner) {
